@@ -8,6 +8,18 @@
 
 ---
 
+## 0. Resumen de Entregables
+
+| # | Entregable | Enlace / Valor |
+|---|---|---|
+| 1 | Link al repositorio de GitHub | [https://github.com/TadeoRochas/PA-TP9-Firebase-CICD](https://github.com/TadeoRochas/PA-TP9-Firebase-CICD) |
+| 2 | URL de producción | [https://pa-tp9-firebase-cicd.web.app](https://pa-tp9-firebase-cicd.web.app) |
+| 3 | Link a PR mergeado con bot y URL de preview | [Pull Request #1 (feat/titulo)](https://github.com/TadeoRochas/PA-TP9-Firebase-CICD/pull/1) y [Pull Request #2 (fix/headers-security)](https://github.com/TadeoRochas/PA-TP9-Firebase-CICD/pull/2) |
+| 4 | Salida de `check-headers.mjs` antes (B1) y después (B5) | Secciones 1.1 y 1.2 a continuación |
+| 5 | Respuestas a las preguntas de reflexión | Sección 2 a continuación |
+
+---
+
 ## 1. Salidas de Verificación de Headers (`check-headers.mjs`)
 
 ### 1.1 Medición Inicial en Producción (B1 - Sin Headers Configurados)
@@ -26,6 +38,24 @@
   ✘ cache-control: max-age=3600
 
 ❌ 6 control(es) pendiente(s).
+```
+
+### 1.2 Medición Final en Producción (B5 - Con Headers y Caché Configurados)
+```text
+▶ HTML: https://pa-tp9-firebase-cicd.web.app/
+  status 200
+  ✔ content-security-policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' https:…
+  ✔ strict-transport-security: max-age=31556926; includeSubDomains; preload
+  ✔ x-content-type-options: nosniff
+  ✔ x-frame-options: DENY
+  ✔ referrer-policy: strict-origin-when-cross-origin
+  ✔ permissions-policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
+  · cache-control: no-cache, must-revalidate
+
+▶ Asset estático: /_next/static/chunks/1x6obpmlu1_c2.js
+  ✔ cache-control: public, max-age=31536000, immutable
+
+✅ Todos los controles pasaron.
 ```
 
 ---
