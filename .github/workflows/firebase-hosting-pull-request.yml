@@ -54,6 +54,7 @@ jobs:
           NEXT_PUBLIC_BUILD_TIME: ${{ github.event.pull_request.updated_at }}
 
       - name: Deploy a preview channel
+        id: deploy_preview
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
@@ -64,3 +65,7 @@ jobs:
           projectId: pa-tp9-firebase-cicd
           # TODO A3: Definí cuánto tiempo vive el preview (ej. 3d). ¿Por qué no conviene que viva para siempre?
           expires: 3d
+
+      # Gate de verificación de seguridad sobre el preview (Nivel Destacado)
+      - name: Validar headers y seguridad en el preview (Gate)
+        run: node scripts/check-headers.mjs ${{ steps.deploy_preview.outputs.details_url }}

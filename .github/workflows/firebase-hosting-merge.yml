@@ -64,3 +64,6 @@ jobs:
           projectId: pa-tp9-firebase-cicd
           # TODO A3: ¿qué valor de channelId publica en producción?
           channelId: live
+
+      - name: Validar headers y seguridad en producción
+        run: node scripts/check-headers.mjs https://pa-tp9-firebase-cicd.web.app
